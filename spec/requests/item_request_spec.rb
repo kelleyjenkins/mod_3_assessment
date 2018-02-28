@@ -50,9 +50,18 @@ describe "Items API" do
 
   context "HTTP Create" do
     it "create an item" do
-      item = create(:item)
+      item_params = {name: "Thing One", description: "this is a thing", image_url: "http://robohash.org/496.png?set=set2&bgset=bg1&size=200x200"}
 
-      
+      post "/api/v1/items", params:{item: item_params}
+
+      expect(response).to be_success
+
+      item = Item.last
+
+      expect(item.name).to eq(item_params[:name])
+      expect(item.description).to eq(item_params[:description])
+      expect(item.image_url).to eq(item_params[:image_url])
+
     end
   end
 end
