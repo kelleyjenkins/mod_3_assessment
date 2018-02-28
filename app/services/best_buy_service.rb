@@ -11,7 +11,11 @@ class BestBuyService
   end
 
   def find_stores
-    get_url("/v1/stores(area(#{@zip},25))?format=json&show=storeType,city,distance,longName,phone&apiKey=#{ENV["bestbuy_api_key"]}")[:stores]
+    get_url("/v1/stores(area(#{@zip},25))?format=json&show=storeType,city,distance,longName,phone&pageSize=10&apiKey=#{ENV["bestbuy_api_key"]}")[:stores]
+  end
+
+  def total
+    get_url("/v1/stores(area(#{@zip},25))?format=json&show=storeType,city,distance,longName,phone&pageSize=10&apiKey=#{ENV["bestbuy_api_key"]}")[:total]
   end
 
   def get_url(url)
