@@ -6,7 +6,9 @@ class StoreSearchService
   end
 
   def stores
-    BestBuyService.new(@zip).find_stores
+    BestBuyService.new(@zip).find_stores.map do |store|
+      Store.new(store)
+    end
     # @conn = Faraday.new(url: "https://api.bestbuy.com") do |faraday|
     #   faraday.adapter Faraday.default_adapter
     # end
