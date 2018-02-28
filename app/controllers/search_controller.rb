@@ -7,7 +7,7 @@ class SearchController < ApplicationController
       faraday.adapter Faraday.default_adapter
     end
 
-    response = @conn.get("/v1/stores(area(#{zip},25))?format=json&show=storeType,city,distance,longName,phone&apiKey=zvkqfuc5vws6ytvedk2qwf4n")
+    response = @conn.get("/v1/stores(area(#{zip},25))?format=json&show=storeType,city,distance,longName,phone&apiKey=#{ENV["bestbuy_api_key"]}")
 
 
     results = JSON.parse(response.body, symbolize_names: true)[:stores]
